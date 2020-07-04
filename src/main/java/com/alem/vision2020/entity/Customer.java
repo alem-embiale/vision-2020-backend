@@ -1,5 +1,7 @@
 package com.alem.vision2020.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +19,8 @@ public class Customer {
 	private Long id;
 	
 	private String name;
+	
+	private List<Order> orders;
 	
 	public Customer() {
 		super();

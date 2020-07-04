@@ -20,7 +20,7 @@ public class Order {
 	
 	private Long orderNo;
 	
-	@ManyToOne()
+	@ManyToOne
 	@JoinColumn(name="CustomerId", referencedColumnName="CustomerId", insertable=false, updatable=false)
 	private Customer customer;
 	
