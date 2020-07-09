@@ -1,44 +1,59 @@
 package com.alem.vision2020.entity;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="item")
 public class Item {
-	
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="ItemId")
-	private Long id;
+	@Column(name="id_Item")
+	private Long itemId;
 	
+	@Column(name="Name")
 	private String name;
 	
-	private float price;
+	@Column(name="Price")
+	private double price;
 	
-	
+	@OneToMany(mappedBy = "item")
+	private List<OrderItem> orderItems;
 
 	public Item() {
 		super();
 	}
 
-	public Item(Long id, String name, float price) {
+	public Item(Long itemId, String name, double price, List<OrderItem> orderItems) {
 		super();
-		this.id = id;
+		this.itemId = itemId;
 		this.name = name;
 		this.price = price;
+		this.orderItems = orderItems;
+	}
+	
+	public List<OrderItem> getOrderItems() {
+		return orderItems;
+	}
+	
+	public void setOrderItems(List<OrderItem> orderItems) {
+		this.orderItems = orderItems;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getItemId() {
+		return itemId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setItemId(Long itemId) {
+		this.itemId = itemId;
 	}
 
 	public String getName() {
@@ -49,12 +64,11 @@ public class Item {
 		this.name = name;
 	}
 
-	public float getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
-	
 }

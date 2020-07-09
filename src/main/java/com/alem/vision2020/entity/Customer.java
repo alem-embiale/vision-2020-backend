@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -15,29 +16,40 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="customerId")
-	private Long id;
+	@Column(name="id_Customer")
+	private Long customerId;
 	
+	@Column(name="Name")
 	private String name;
 	
-	private List<Order> orders;
-	
+	@OneToMany(mappedBy = "customer")
+	private List<Orders> orders;
+
 	public Customer() {
 		super();
 	}
 
-	public Customer(Long id, String name) {
+	public Customer(Long customerId, String name, List<Orders> orders) {
 		super();
-		this.id = id;
+		this.customerId = customerId;
 		this.name = name;
+		this.orders = orders;
+	}
+	
+	public List<Orders> getOrders() {
+		return orders;
+	}
+	
+	public void setOrders(List<Orders> orders) {
+		this.orders = orders;
 	}
 
-	public Long getId() {
-		return id;
+	public Long getCustomerId() {
+		return customerId;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setCustomerId(Long customerId) {
+		this.customerId = customerId;
 	}
 
 	public String getName() {
@@ -47,5 +59,4 @@ public class Customer {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 }

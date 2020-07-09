@@ -7,17 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.alem.vision2020.entity.Customer;
-import com.alem.vision2020.repository.iCustomerRepository;
+import com.alem.vision2020.repository.CustomerRepository;
 
 @Service
 public class CustomerService {
 	
 	@Autowired
-	private iCustomerRepository customerRepository;
+	private CustomerRepository customerRepository;
 
 	public List<Customer> getCustomers() {
-		List<Customer> list = new ArrayList<>();
-		list = customerRepository.findAll();
-		return list;
+		return customerRepository.findAll();
 	}
 }
