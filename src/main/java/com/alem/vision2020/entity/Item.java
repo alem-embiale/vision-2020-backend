@@ -1,5 +1,7 @@
 package com.alem.vision2020.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
 import javax.persistence.Column;
@@ -11,12 +13,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="item")
+//@Table(name="item")
 public class Item {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_Item")
+	@Column(name="Item_Id")
 	private Long itemId;
 	
 	@Column(name="Name")
@@ -39,7 +41,8 @@ public class Item {
 		this.price = price;
 		this.orderItems = orderItems;
 	}
-	
+
+	@JsonManagedReference
 	public List<OrderItem> getOrderItems() {
 		return orderItems;
 	}

@@ -1,29 +1,27 @@
 package com.alem.vision2020.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import javax.persistence.*;
 
 @Entity
-@Table(name="orderitems")
+//@Table(name="order_item")
 public class OrderItem {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_Orderitems")
+	@Column(name="Order_Item_Id")
 	private Long orderItemId;
 	
 	@Column(name="Quantity")
 	private int quantity;
 	
 	@ManyToOne
+	@JoinColumn(name="Order_Id")
 	private Orders order;
 	
 	@ManyToOne
+	@JoinColumn(name="Item_Id")
 	private Item item;
 
 	public OrderItem() {
@@ -37,19 +35,21 @@ public class OrderItem {
 		this.order = order;
 		this.item = item;
 	}
-	
+
+	@JsonBackReference
 	public Item getItem() {
 		return item;
 	}
-	
+
 	public void setItem() {
 		this.item = item;
 	}
-	
+
+	@JsonBackReference
 	public Orders getOrder() {
 		return order;
 	}
-	
+
 	public void setOrder(Orders order) {
 		this.order = order;
 	}

@@ -1,35 +1,33 @@
 package com.alem.vision2020.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
-@Table(name="order")
+//@Table(name="order")
 public class Orders {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id_Order")
+	@Column(name="Order_Id")
 	private Long orderId;
 	
-	@Column(name="OrderNo")
+	@Column(name="Order_No")
 	private String orderNo;
 	
-	@Column(name="PMethod")
+	@Column(name="Payment_Method")
 	private String paymentMethod;
 	
-	@Column(name="GTotal")
+	@Column(name="Grand_Total")
 	private float grandTotal;
 	
 	@ManyToOne
+	@JoinColumn(name="Customer_Id")
 	private Customer customer;
 	
 	@OneToMany(mappedBy = "order")
@@ -48,19 +46,20 @@ public class Orders {
 		this.customer = customer;
 		this.orderItems = orderItems;
 	}
-	
+	@JsonManagedReference
 	public List<OrderItem> getOrderItems() {
 		return orderItems;
 	}
-	
+
 	public void setOrderItems() {
 		this.orderItems = orderItems;
 	}
-	
+
+	@JsonBackReference
 	public Customer getCustomer() {
 		return customer;
 	}
-	
+
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
 	}
