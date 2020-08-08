@@ -2,7 +2,6 @@ package com.alem.vision2020.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -14,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name="customer")
+@Table(name="customer")
 public class Customer {
 
 	@Id
@@ -22,7 +21,7 @@ public class Customer {
 	@Column(name="Customer_Id")
 	private Long customerId;
 	
-	@Column(name="Name")
+	@Column(name="Customer_Name")
 	private String name;
 	
 	@OneToMany(mappedBy = "customer")

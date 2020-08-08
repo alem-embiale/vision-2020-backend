@@ -1,7 +1,6 @@
 package com.alem.vision2020.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.util.List;
@@ -9,7 +8,7 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
-//@Table(name="order")
+@Table(name="orders")
 public class Orders {
 	
 	@Id

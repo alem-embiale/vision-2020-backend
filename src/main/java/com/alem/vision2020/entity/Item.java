@@ -13,7 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-//@Table(name="item")
+@Table(name="item")
 public class Item {
 
 	@Id
@@ -21,7 +21,7 @@ public class Item {
 	@Column(name="Item_Id")
 	private Long itemId;
 	
-	@Column(name="Name")
+	@Column(name="Item_Name")
 	private String name;
 	
 	@Column(name="Price")
